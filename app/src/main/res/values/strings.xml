@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DB Offline</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="save">Save</string>
+    <string name="contact">Contact</string>
+    <string name="customer_info">Customer Info</string>
+    <string name="form_not_complete">Please complete all field</string>
+</resources>
