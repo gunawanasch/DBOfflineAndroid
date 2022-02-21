@@ -7,6 +7,6 @@ Features inside this project:
 API repository for this project :
 https://github.com/gunawanasch/api_simple_customer
 
-<img src="https://github.com/gunawanasch/DBOfflineAndroid/blob/master/app/src/main/res/drawable/home.jpg" width="20%">&emsp;&emsp;<img src="https://github.com/gunawanasch/DBOfflineAndroid/blob/master/app/src/main/res/drawable/contact.jpg" width="20%">&emsp;&emsp;<img src="https://github.com/gunawanasch/DBOfflineAndroid/blob/master/app/src/main/res/drawable/customer_info.jpg" width="20%">
+<img src="https://github.com/gunawanasch/DBOfflineAndroid/blob/master/app/src/main/res/drawable/home.jpg" width="30%">&emsp;&emsp;<img src="https://github.com/gunawanasch/DBOfflineAndroid/blob/master/app/src/main/res/drawable/contact.jpg" width="30%">&emsp;&emsp;<img src="https://github.com/gunawanasch/DBOfflineAndroid/blob/master/app/src/main/res/drawable/customer_info.jpg" width="30%">
 
 
