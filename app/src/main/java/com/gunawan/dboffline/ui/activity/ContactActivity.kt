@@ -28,9 +28,14 @@ class ContactActivity : AppCompatActivity() {
         binding = ActivityContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.tbContact.setNavigationIcon(R.drawable.ic_back)
         binding.tbContact.title = getString(R.string.contact)
 
         getAllContact()
+
+        binding.tbContact.setNavigationOnClickListener {
+            finish()
+        }
 
         binding.fabAdd.setOnClickListener {
             showBottomSheetFormContact(true, 0)
@@ -110,6 +115,11 @@ class ContactActivity : AppCompatActivity() {
                 getAllContact()
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

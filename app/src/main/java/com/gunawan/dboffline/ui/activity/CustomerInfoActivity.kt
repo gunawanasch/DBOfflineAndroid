@@ -29,6 +29,7 @@ class CustomerInfoActivity : AppCompatActivity() {
         binding = ActivityCustomerInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.tbCustomerInfo.setNavigationIcon(R.drawable.ic_back)
         binding.tbCustomerInfo.title                = getString(R.string.customer_info)
         binding.pbCustomerInfo.visibility           = View.VISIBLE
         binding.srCustomerInfo.visibility           = View.GONE
@@ -36,6 +37,10 @@ class CustomerInfoActivity : AppCompatActivity() {
         customerInfoViewModel.ldMsg                 = MutableLiveData()
 
         getAllCustomerInfo()
+
+        binding.tbCustomerInfo.setNavigationOnClickListener {
+            finish()
+        }
 
         binding.srCustomerInfo.setOnRefreshListener {
             binding.srCustomerInfo.isRefreshing = true
