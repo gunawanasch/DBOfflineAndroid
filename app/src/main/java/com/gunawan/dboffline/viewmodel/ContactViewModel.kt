@@ -31,6 +31,7 @@ class ContactViewModel(private val repo: ContactRepository) : ViewModel() {
 
     fun getAllContact(): LiveData<List<ContactModel>>? {
         ldGetAllContact = repo.getAllContact()
+
         return ldGetAllContact
     }
 

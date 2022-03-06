@@ -32,6 +32,7 @@ class CustomerInfoViewModel(private val repo: CustomerInfoRepository) : ViewMode
                 .subscribe {
                     if (it.isNotEmpty()) {
                         GlobalScope.launch(Dispatchers.Main) {
+                            repo.clearCustomerInfo()
                             for (i in it.indices) {
                                 repo.insertCustomerInfo(
                                     CustomerInfoModel(it.get(i).idCustomerInfo!!,
