@@ -4,11 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.gunawan.dboffline.repository.ContactRepository
 import com.gunawan.dboffline.repository.local.room.model.ContactModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
-class ContactViewModel(private val repo: ContactRepository) : ViewModel() {
+@HiltViewModel
+class ContactViewModel @Inject constructor(private val repo: ContactRepository) : ViewModel() {
     var ldGetAllContact: LiveData<List<ContactModel>>? = null
 
     fun insertContact(contact: ContactModel) = runBlocking {

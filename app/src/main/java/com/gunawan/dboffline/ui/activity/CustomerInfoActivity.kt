@@ -1,28 +1,25 @@
 package com.gunawan.dboffline.ui.activity
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gunawan.dboffline.R
 import com.gunawan.dboffline.databinding.ActivityCustomerInfoBinding
-import com.gunawan.dboffline.databinding.ActivityMainBinding
-import com.gunawan.dboffline.repository.local.room.model.ContactModel
-import com.gunawan.dboffline.ui.adapter.ContactAdapter
 import com.gunawan.dboffline.ui.adapter.CustomerInfoAdapter
-import com.gunawan.dboffline.viewmodel.ContactViewModel
 import com.gunawan.dboffline.viewmodel.CustomerInfoViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CustomerInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCustomerInfoBinding
     private lateinit var customerInfoAdapter: CustomerInfoAdapter
-    private val customerInfoViewModel by viewModel<CustomerInfoViewModel>()
+    private val customerInfoViewModel: CustomerInfoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +34,7 @@ class CustomerInfoActivity : AppCompatActivity() {
         customerInfoViewModel.ldMsg                 = MutableLiveData()
 
         getAllCustomerInfo()
+        getAllCustomerInfoMsg()
 
         binding.tbCustomerInfo.setNavigationOnClickListener {
             finish()
@@ -80,7 +78,7 @@ class CustomerInfoActivity : AppCompatActivity() {
             }
             binding.pbCustomerInfo.visibility = View.GONE
             binding.srCustomerInfo.visibility = View.GONE
-            Toast.makeText(this, it, Toast.LENGTH_SHORT)
+            Toast.makeText(this@CustomerInfoActivity, it, Toast.LENGTH_SHORT)
         })
     }
 

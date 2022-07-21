@@ -4,21 +4,28 @@ import android.app.Application
 import androidx.room.Room
 import com.gunawan.dboffline.repository.local.room.DBOfflineDAO
 import com.gunawan.dboffline.repository.local.room.DBOfflineDatabase
-import org.koin.android.ext.koin.androidApplication
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-val databaseModule = module {
+@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
 
-    fun provideDatabase(application: Application): DBOfflineDatabase {
+    @Provides
+    @Singleton
+    fun provideDatabase(application: Application, callback: DBOfflineDatabase.Callback): DBOfflineDatabase{
         return Room.databaseBuilder(application, DBOfflineDatabase::class.java, "dboffline")
             .fallbackToDestructiveMigration()
+            .addCallback(callback)
             .build()
     }
 
-    fun provideDBOfflineDao(database: DBOfflineDatabase): DBOfflineDAO {
-        return  database.dbOfflineDAO
+    @Provides
+    fun provideMovieAppDao(db: DBOfflineDatabase): DBOfflineDAO{
+        return db.getDBOfflineDao()
     }
 
-    single { provideDatabase(androidApplication()) }
-    single { provideDBOfflineDao(get()) }
 }
