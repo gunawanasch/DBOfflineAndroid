@@ -37,6 +37,7 @@ class CustomerInfoActivity : AppCompatActivity() {
         customerInfoViewModel.ldMsg                 = MutableLiveData()
 
         getAllCustomerInfo()
+        getAllCustomerInfoMsg()
 
         binding.tbCustomerInfo.setNavigationOnClickListener {
             finish()

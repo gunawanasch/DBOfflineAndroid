@@ -1,11 +1,9 @@
 package com.gunawan.dboffline.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gunawan.dboffline.repository.CustomerInfoRepository
-import com.gunawan.dboffline.repository.local.room.model.ContactModel
 import com.gunawan.dboffline.repository.local.room.model.CustomerInfoModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -26,10 +24,7 @@ class CustomerInfoViewModel(private val repo: CustomerInfoRepository) : ViewMode
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {}
                 .doOnComplete {}
-                .doOnError {
-                    ldMsg.value = it.message
-                }
-                .subscribe {
+                .subscribe({ it ->
                     if (it.isNotEmpty()) {
                         GlobalScope.launch(Dispatchers.Main) {
                             repo.clearCustomerInfo()
@@ -46,7 +41,9 @@ class CustomerInfoViewModel(private val repo: CustomerInfoRepository) : ViewMode
                     ldGetAllCustomerInfo.addSource(repo.getAllCustomerInfoDB()) {
                         ldGetAllCustomerInfo.value = it
                     }
-                }
+                }, {
+                    ldMsg.value = it.message
+                })
         )
     }
 
